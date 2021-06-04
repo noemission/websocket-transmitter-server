@@ -1,9 +1,7 @@
 const express = require("express");
 const app = express();
 const httpServer = require("http").createServer(app);
-const options = { /* ... */ };
-const socket = require('socket.io');
-const io = require("socket.io")(httpServer, options);
+const io = require("socket.io")(httpServer, {});
 const basicAuth = require('express-basic-auth')
 
 app.use(basicAuth({
@@ -34,4 +32,4 @@ io.of("/transmitter").on("connection", (socket) => {
 
 app.use(express.static('public'))
 
-httpServer.listen(3030, '192.168.1.48');
+httpServer.listen(process.env.PORT);
